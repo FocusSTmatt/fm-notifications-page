@@ -1,0 +1,15 @@
+.userAccount-ctn {
+    display: flex;
+}
+
+.userAccount-ctn img {
+    width: 40px;
+}
+
+span:nth-of-type(2) {
+
+}
+
+.active {
+    background: red;
+}

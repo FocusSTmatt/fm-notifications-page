@@ -1,0 +1,29 @@
+.header-ctn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em 0 1em;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header h3 {
+
+}
+
+.header p {
+  margin-left: 1em;
+  background: darkblue;
+  color: #fff;
+  padding: 2px 10px 2px 10px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.header-ctn h5 {
+  white-space: nowrap;
+}
