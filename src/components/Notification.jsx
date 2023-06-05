@@ -1,21 +1,22 @@
-import { useState } from 'react'
+import React from 'react'
 
-    function Notification({userImage, userName, userAction, title}) {
-    const [isActive, setIsActive] = useState({ isActive: null});
+function Notification({handleClick, id, initials, myRef}) {
 
-    return (
-        <div>
-            <div 
-                className='userAccount-ctn'>   
-                <img src={userImage} />
-                <div className='userAccount'>
-                    <span>{userName}</span> 
-                    <span>{userAction}</span> 
-                    <span>{title}</span> 
-                </div>
-            </div>
-        </div>
-    )
-    }
+    // const handleUpdate = (user) => {
+    //     setUserTest({...userTest, [user]: "active" })
+    //     console.log(userTest)
+    //   }
+
+  return (
+    <div 
+        onClick={handleClick}
+        className='boxTest'
+        id={id}
+        ref={myRef}
+    >
+
+    </div>
+  )
+}
 
 export default Notification
