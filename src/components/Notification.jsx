@@ -1,21 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { object } from '../data1'
 
-function Notification({handleClick, id, initials, myRef}) {
+function Notification({image, action, id, message, title, cname, click, index, importobject, importdata, setimportdata}) {
 
-    // const handleUpdate = (user) => {
-    //     setUserTest({...userTest, [user]: "active" })
-    //     console.log(userTest)
-    //   }
+  function toggleActiveObject(index){
+    let newObjectArray = [...importobject];
+    newObjectArray.object[index].toggled
+    ? newObjectArray.object[index].toggled = true
+    : newObjectArray.object[index].toggled = false;
+    setimportdata({...importdata, object: newObjectArray})
+  }
 
+  
   return (
-    <div 
-        onClick={handleClick}
-        className='boxTest'
-        id={id}
-        ref={myRef}
-    >
+    <>
+      {object.map((note, index) => {
+        return (
+          <div 
+            key={index}
+            onClick={() => toggleActiveObject(index)}
+            className={cname}>
 
-    </div>
+          </div>
+        )
+      })}
+    
+    </>
   )
 }
 

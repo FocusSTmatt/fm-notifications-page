@@ -1,87 +1,65 @@
-import './App.css'
-import { useState, useRef, forwardRef, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import Header from './components/Header'
-import MarkWebber from './assets/images/avatar-mark-webber.webp'
-import AngelaGray from './assets/images/avatar-angela-gray.webp'
-import JacobThompson from './assets/images/avatar-mark-webber.webp'
-import RizkyHasanuddin from './assets/images/avatar-rizky-hasanuddin.webp'
-import KimberlySmith from './assets/images/avatar-kimberly-smith.webp'
-import ImageChess from './assets/images/image-chess.webp'
-import NathanPeterson from './assets/images/avatar-nathan-peterson.webp'
-import AnnaKim from './assets/images/avatar-anna-kim.webp'
-import { notificationUsers, notificationValue } from './atoms'
+import React, {useEffect, useState} from 'react'
 import Notification from './components/Notification'
-import { v4 as uuidv4 } from 'uuid'
-
+import './App.css'
+import Header from './components/Header'
+import {data} from './data'
 
 function App() {
-  const notificationRef = useRef([null, null, null])
-  const [userActive, setUserActive] = useRecoilState(notificationUsers)
-  const [notificationData, setNotificationData] = useState([
-    { name: "Mark Webber", isClicked: false },
-    { name: "Angela", isClicked: false },
-    { name: "Justin", isClicked: false },
-  ])
-  
-  // const handleClick = (e) => {
-  //     notificationData.map((item, index) => {
-  //       console.log(e.target.id)
-  //       console.log(index)
-  //     if(e.target.id == index){
-  //       setUserActive({[index]: true})
-  //     }
-  //   })
-  //   return userActive
-  // }
 
-  const handleClick = (e, index) => {
-    console.log(e.target.id)
-    console.log(notificationRef[index].current.id)
-  }
+    const [appState, setAppState] = useState({
+        objects: [
+            {id: 1, toggled: false},
+            {id: 2, toggled: false},
+            {id: 3, toggled: false},
+            {id: 4, toggled: false}
+        ]
+    });
+    const [total, setTotal] = useState();
 
-  useEffect(() => {
-    notificationData.filter((item, index) => {
-      console.log(item.isClicked)
-      
-    })
-  }, [userActive])
     
-  const handleClassChange = (index) => {
-   const data = notificationData[index].isClicked 
-    if(data === true){
-      console.log("Testing 123")
+    function toggleActiveObject(index){
+        let arrayCopy = [...appState.objects];
+        arrayCopy[index].toggled
+        ? arrayCopy[index].toggled = false
+        : arrayCopy[index].toggled = true;
+        setAppState({...appState, objects: arrayCopy});
+        getTotal();
     }
-  }
+
+    function toggleActiveNote(index){
+        if(appState.objects[index].toggled){
+            return "boxTest active"
+        } else {
+            return "boxTest inactive"
+        }
+    }
+
     
-    // console.log(e.target.id)
-    // console.log(notificationRef.current.id)
-    // if(e.target.id === notificationRef.current.id) {
-    // notificationRef.current.style.background = "red"
-    // const uuid = event.target.id
-    // if(uuid === event.target.id){
-    //   console.log(notificationData)
-    //   myRef.current.style.background = "red"
-    // }
-//   }
-// } 
-  
+
+    function getTotal(){
+        const totalTrue = appState.objects.filter(note => note.toggled).length
+        setTotal(totalTrue)
+    }
+
   return (
-    <>
-      <Header />
-     { notificationData.map((notification, index) => {
-      return (
-        <Notification
-          myRef={notificationRef[index]}
-          handleClick={() => handleClick(event)}
-          key={uuidv4()}
-          id={index}
-          name={notification.name}
-          isClicked={notification.isClicked} />
-      )
-     })}
-    </>
+    <div>
+        <Header total={total}/>
+        {appState.objects.map((element, index) => {
+            return <div key={index} onClick={() => toggleActiveObject(index)} className={toggleActiveNote(index)}></div>
+        })}
+    </div>
   )
 }
 
 export default App
+
+// {notificationData.map((item, index) => {
+//     return (
+//         <Notification 
+//             key={index} 
+//             // toggleIsClicked={toggleIsClicked[index]}
+//             handleClick={() => toggleIsClicked(item.id)}
+//             id={index}
+//             total={total}/> 
+//     )    
+// })}
