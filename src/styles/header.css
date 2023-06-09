@@ -1,5 +1,46 @@
-p {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-}
+.header-ctn {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5em 1em;
+    background: #fff;
+  }
+  
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .header h3 {
+    font-weight: 800;
+    font-size: 21px;
+    
+  }
+  
+  .header p {
+    background: darkblue;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 6px;
+    min-width: 30px;
+    min-height: 25px;
+    text-align: center;
+    margin-left: 0.4em;
+    align-self:flex-start;
+  }
+  
+  .header-ctn h5 {
+    white-space: nowrap;
+    color: gray;
+    font-size: 14px;
+    font-family: jakartaReg;
+    font-weight: 500;
+    align-self: center;
+    cursor: pointer;
+  }
+
+  .header-ctn h5:active, .header-ctn h5:hover, .header-ctn h5:focus {
+    color: rgb(34, 34, 163); 
+  }

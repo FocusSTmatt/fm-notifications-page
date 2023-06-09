@@ -1,52 +1,86 @@
 import React, {useState} from 'react'
-import { object } from './data1'
-import './App.css'
 import Notification from './components/Notification'
+import './App.css'
+import Header from './components/Header'
+import {data} from './data'
 
-function App1() {
-  const [importData, setImportData] = useState({object})
+function App() {
 
-  function toggleActiveObject(index){
-    let newObjectArray = [...importData.object];
-    newObjectArray.object[index].toggled
-    ? newObjectArray.object[index].toggled = true
-    : newObjectArray.object[index].toggled = false
-    setImportData({...importData, object: newObjectArray})
-  }
+    const [appState, setAppState] = useState({
+        objects: [
+            {id: 1, toggled: true}, {id: 2, toggled: true}, {id: 3, toggled: true},
+            {id: 4, toggled: false}, {id: 5, toggled: false}, {id: 6, toggled: false},
+            {id: 7, toggled: false},
+        ]
+    });
 
-  function toggleActiveClass(index){
-    if(importData.object[index].toggled){
-      return "boxTest active"
-    } else {
-      return "boxTest inactive"
+    const [total, setTotal] = useState(3);
+
+    function toggleActiveObject(index){
+        let arrayCopy = [...appState.objects];
+        arrayCopy[index].toggled
+        ? arrayCopy[index].toggled = false
+        : arrayCopy[index].toggled = true;
+        setAppState({...appState, objects: arrayCopy});
+        getTotal();
     }
-  }
 
+    function toggleMarkAllRead(){
+      let arrayCopy = [...appState.objects];
+      arrayCopy.forEach(object => object.toggled = false)
+      setAppState({...appState, objects: arrayCopy});
+      setTotal(0);
+    }
+
+    function toggleActiveNote(index){
+        if(appState.objects[index].toggled){
+            return "notificationCtn active"
+        } else {
+            return "notificationCtn inactive"
+        }
+    }
+
+    function toggleDot(index){
+        if(appState.objects[index].toggled){
+          return "dot-active"
+      } else {
+          return "dot-inactive"
+      }
+    }
+    
+
+    function getTotal(){
+        const totalTrue = appState.objects.filter(note => note.toggled).length
+        setTotal(totalTrue)
+    }
 
   return (
-    <>
-      {importData.object.map((note, index) => {
-        return (
-          <Notification
-            id={note.id}
-            index={index} 
-            key={index}
-            name={note.name}
-            title={note.title}
-            image={note.image}
-            click={() => toggleActiveObject(index)}
-            cname={toggleActiveClass(index)}
-            message={note.message}
-            action={note.action}
-            timeOfMessage={note.timeOfMessage}
-            importdata={importData}
-            setimportdata={setImportData}
-            importobject={importData.object}
+    <div className='App'>
+        <Header 
+          total={total}
+          mark={toggleMarkAllRead} 
+        />
+        {data.map((note, index) => {
+          return (
+            <Notification
+                key={index}
+                name={note.userName}
+                image={note.userImage}
+                action={note.userAction}
+                message={note.message}
+                notetitle={note.title}
+                timeof={note.timeOfMessage} 
+                commentedPhoto={note.commentedPhoto}
+                click={() => toggleActiveObject(index)}
+                cname={toggleActiveNote(index)}
+                id={index}
+                dot={toggleDot(index)}
           />
-        )
-      })}
-    </>
+          )
+        })}
+    </div>
   )
 }
 
-export default App1
+export default App
+

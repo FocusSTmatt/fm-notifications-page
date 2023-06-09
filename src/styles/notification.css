@@ -1,0 +1,118 @@
+.active {
+    background: rgb(245, 244, 251);
+}
+
+.inactive {
+    background: #fff;
+}
+
+
+.main-ctn {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+}
+
+.notificationCtn {
+    width: 95%;
+    display: flex;
+    align-items: flex-start;
+    padding: 1em;
+    margin-bottom: 0.75em;
+    border-radius: 10px;
+}
+
+img {
+    height: 40px;
+    width: 40px;
+    align-self: flex-start;
+    margin-right: 1em;
+}
+
+.commentedPhoto {
+    display: none;
+    cursor: pointer;
+}
+
+.commentedPhoto#five {
+    display: flex;
+    margin-left: auto;
+}
+
+.textCtn {
+
+}
+
+span {
+    font-size: 14px;
+    margin-right: 0.3em;
+}
+
+.name {
+    font-family: jakartaBold;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.name:active, name:hover, name:focus {
+    color: rgb(34, 34, 163) !important;
+}
+
+.action {
+    color: rgb(151, 151, 151);
+    font-weight: 650;
+}
+
+.title:active, .title:hover, .title:focus{
+    cursor: pointer;
+    color: rgb(34, 34, 163) !important;
+}
+
+.title {
+    font-size: 15px;
+}
+
+.title#three, .title#seven{
+    color: rgb(34, 34, 163);
+    font-family: jakartaBold;
+}
+
+.title#one, .title#six{
+    color: rgb(85, 85, 87);
+    font-family: jakartaBold;
+}
+
+.dot-active {
+    border-radius: 50%;
+    font-size: 5px;
+    background: red; 
+    align-self: flex-start;
+    position: relative;
+    bottom: 2px;
+}
+
+.dot-inactive {
+    display: none;
+}
+
+.time {
+    color: gray;
+    font-size: 14px;
+    margin-top: 0.2em;
+}
+
+.message#four {
+    font-size: 15px;
+    border: 1px solid lightgrey;
+    padding: 1em;
+    border-radius: 5px;
+    font-family: jakartaMed;
+    color: gray;
+    margin-top: 0.75em;
+}
+
+.message#four:focus, .message#four:active, .message#four:hover {
+    cursor: pointer;
+    background: rgb(210, 232, 248);
+}

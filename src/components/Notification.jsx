@@ -1,30 +1,26 @@
-import React, {useState} from 'react'
-import { object } from '../data1'
+import '../styles/notification.css'
+import { useRef } from 'react'
 
-function Notification({image, action, id, message, title, cname, click, index, importobject, importdata, setimportdata}) {
 
-  function toggleActiveObject(index){
-    let newObjectArray = [...importobject];
-    newObjectArray.object[index].toggled
-    ? newObjectArray.object[index].toggled = true
-    : newObjectArray.object[index].toggled = false;
-    setimportdata({...importdata, object: newObjectArray})
-  }
 
-  
+function Notification({commentedPhoto, dot, id, titleref, timeof, name, cname, click, image, action, notetitle, message}) {
+  const idArray = ["one", "two", "three", "four", "five", "six", "seven"]
   return (
     <>
-      {object.map((note, index) => {
-        return (
-          <div 
-            key={index}
-            onClick={() => toggleActiveObject(index)}
-            className={cname}>
-
-          </div>
-        )
-      })}
-    
+      <div className='main-ctn'>
+      <div className={cname} onClick={click}>
+        <img src={image} />
+        <div className='textCtn'>
+          <span className='name'>{name}</span>
+          <span className='action'>{action}</span>
+          <span id={idArray[id]} className='title'>{notetitle}</span>
+          <span className={dot}>🔴</span>
+          <p className='time'>{timeof}</p>
+          <p id={idArray[id]} className='message'>{message}</p>
+        </div>
+        <img id={idArray[id]} className='commentedPhoto' src={commentedPhoto} />
+      </div>
+      </div>
     </>
   )
 }

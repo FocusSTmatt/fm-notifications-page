@@ -8,10 +8,9 @@ function App() {
 
     const [appState, setAppState] = useState({
         objects: [
-            {id: 1, toggled: false},
-            {id: 2, toggled: false},
-            {id: 3, toggled: false},
-            {id: 4, toggled: false}
+            {id: 1, toggled: false}, {id: 2, toggled: false}, {id: 3, toggled: false},
+            {id: 4, toggled: false}, {id: 5, toggled: false}, {id: 6, toggled: false},
+            {id: 7, toggled: false},
         ]
     });
     const [total, setTotal] = useState();
@@ -45,7 +44,15 @@ function App() {
     <div>
         <Header total={total}/>
         {appState.objects.map((element, index) => {
-            return <div key={index} onClick={() => toggleActiveObject(index)} className={toggleActiveNote(index)}></div>
+            return (
+                <div 
+                    key={index} 
+                    onClick={() => toggleActiveObject(index)} 
+                    className={toggleActiveNote(index)}
+                >
+                   
+                </div>
+            )
         })}
     </div>
   )
